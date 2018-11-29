@@ -16,10 +16,11 @@ public class Sale {
     int quantity;
     String date;
     Customer customer;
-    int id;
+    public static int saleCount;
+    int saleID;
     
     
-    Sale(Item itemSold, int quantity, String date, Customer customer, int uniqueID){
+    Sale(Item itemSold, int quantity, String date, Customer customer){
         if(itemSold != null)
         {
             this.itemSold = itemSold;
@@ -36,17 +37,27 @@ public class Sale {
         {
             this.customer = customer;
         }
-        this.id = uniqueID; 
+        this.saleID = saleCount;
+        saleCount++;
     }
     
     public Customer getCustomer(){
         return this.customer;
     }
+    
+    public void setSaleID(int saleID){
+        this.saleID = saleID;
+    }
+    public int getSaleID(){
+        return this.saleID;
+    }
+    
     @Override
     public String toString(){
-        String sale = "Customer: " + customer.getName() + "\nSaleID: " + this.id + "\nItem: " + itemSold.itemName + "    Price: $" 
+        String sale = "Customer: " + customer.getName() + "\nSaleID: " + this.saleID + "\nItem: " + itemSold.itemName + "    Price: $" 
                 + itemSold.getPrice() + "\tQuantity: " + this.quantity 
                 + "     Sale Total: " + (itemSold.getPrice() * this.quantity);
         return sale;
     }
 }
+

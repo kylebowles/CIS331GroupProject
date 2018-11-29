@@ -12,19 +12,21 @@ enter sales, print receipts, and print reports.
 package CIS331GroupProject;
 
 public class Contractor extends Customer{
-    String businessName;
-    static int contractorIDCount;
-    int contractorID;
+    public String businessName;
+    public static int contractorCount;
+    public int contractorID;
     
-    Contractor(String firstName, String lastName, String businessName, String address, String phoneNumber, String emailAddress,
-                     int uniqueID)
+    Contractor(String firstName, String lastName, String businessName, String address, String phoneNumber, String emailAddress)
     {
-        super(firstName, lastName, address, phoneNumber, emailAddress, uniqueID);
+        super(firstName, lastName, address, phoneNumber, emailAddress);
         
         if(!(businessName.equals("")))
         {
             this.businessName = businessName;
         }
+        
+        this.contractorID = contractorCount;
+        contractorCount++;
     }
     
     public String getBusinessName(){
@@ -36,7 +38,7 @@ public class Contractor extends Customer{
     }
     @Override
     public String toString(){
-        return (this.getName() + " | Business Name: " + this.businessName + " | ID: " + this.customerID);
+        return (this.getName() + " | Business Name: " + this.businessName + " | Contractor ID: " + this.contractorID);
     }
     
 }

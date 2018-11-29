@@ -16,13 +16,16 @@ public class Vendor {
     private String businessName;
     private String businessAddress;
     private String phoneNumber; 
-    int vendorID;
+    public int vendorID;
+    public static int vendorCount;
     
-    Vendor(int uniqueID, String businessName, String businessAddress, String phoneNumber){
+    Vendor(String businessName, String businessAddress, String phoneNumber){
         this.businessName = businessName;
         this.businessAddress = businessAddress;
         this.phoneNumber = phoneNumber;
-        this.vendorID = uniqueID;
+        this.vendorID = vendorCount;
+        vendorCount++;
+        
     }
     
     public String getBusinessName(){

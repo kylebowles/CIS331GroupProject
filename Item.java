@@ -22,12 +22,13 @@ public class Item {
     private int inventory;
     public int vendorID;
     Sale sold;
-    int id;//////////////////////////////////
+    public int itemID;
+    public static int itemCount;
     
     ArrayList<String> itemHistory = new ArrayList<String>();
     
     //In main method, must list all the vendorID's before asking them to select the vendor
-    Item(int id, String itemName, double weight, String description, double salePrice, 
+    Item(String itemName, double weight, String description, double salePrice, 
                 double pricePaid, int quantity, int vendorID){
         //this.id; //whatever the static id counter in main is named
         if(!(itemName.equals("")))
@@ -51,12 +52,15 @@ public class Item {
             this.pricePaid = pricePaid;
         }
         
-        if(quantity >= 0)
+        if(inventory > 0)
         {
-            this.inventory = quantity;  
+            this.inventory = inventory;
         }
         
         this.vendorID = vendorID; 
+        
+        this.itemID = itemCount;
+        itemCount++;
     }
     public double getPrice(){
         return salePrice; 
@@ -79,23 +83,7 @@ public class Item {
     }
     
     public void subtractInventory(int inventoryChange){
-        this.inventory -= inventoryChange;
-           
-    }
-    
-    public int inventoryStatus(int inventoryChange){
-         if(inventory - inventoryChange > 0){
-           this.inventory -= inventoryChange;
-           return 0;
-        }
-        else if(inventory - inventoryChange > 0 && inventory - inventoryChange < 5){
-           System.out.println("Inventory Level Low");
-           this.inventory -= inventoryChange; 
-           return 1;
-        }
-        else
-            System.out.println("Not enough inventory to fill order");
-            return 2;
+        this.inventory -= inventoryChange;  
     }
     
     public int getVendorId(){
@@ -122,7 +110,7 @@ public class Item {
     ///////////////////////////////////////////////////////////////////////////
     @Override
     public String toString(){
-        return (this.itemName + " Unique ID Number: " + id);
+        return (this.itemName + " ID Number: " + itemID);
     }
     
     public String getItemName(){
